@@ -5,8 +5,8 @@ namespace App.Models
     [System.Serializable]
     public class InventoryActionPayloadModel
     {
-        public int Id { get; set; }
-        public string Action { get; set; }
+        public int Id;
+        public string Action;
 
         public InventoryActionPayloadModel(int id, InventoryActionType action)
         {

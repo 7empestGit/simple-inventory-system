@@ -1,5 +1,6 @@
 ﻿namespace App.Enums
 {
+    [System.Serializable]
     public enum InventoryItemType
     {
         None = 0,

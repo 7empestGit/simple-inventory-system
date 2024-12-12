@@ -5,9 +5,9 @@ namespace App.Models
     [System.Serializable]
     public class InventoryItemModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public float Weight { get; set; }
-        public InventoryItemType Type { get; set; }
+        public int Id;
+        public string Name;
+        public float Weight;
+        public InventoryItemType Type;
     }
 }
