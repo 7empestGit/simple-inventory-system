@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using App.Enums;
 using App.Models;
 using UnityEngine;
@@ -10,8 +12,11 @@ namespace App
     public class BackpackController : MonoBehaviour
     {
         [SerializeField] private InventoryViewController inventoryViewController;
+        [SerializeField] private TableController tableController;
+        [SerializeField] private List<ItemTransformData> transformData;
         // TO DO: Table controller
         
+        [Space]
         public UnityEvent OnItemPutIn;
         public UnityEvent OnItemPutOut;
         
@@ -25,9 +30,9 @@ namespace App
         private void OnMouseUp()
         {
             InventorySlotController selectedSlot = inventoryViewController.SelectedSlot;
-            if (selectedSlot != null)
+            if (selectedSlot != null && selectedSlot.Item != null)
             {
-                PutOutBackpack(selectedSlot.Model);
+                PutOutBackpack(selectedSlot.Item);
             }
             
             inventoryViewController.ToggleView(false);
@@ -35,20 +40,44 @@ namespace App
 
         #endregion
 
-        private async void PutInBackpack(InventoryItemModel item)
+        public async void PutInBackpack(InventoryItemController item)
         {
-            bool result = await NetworkManager.Instance.ExecuteInventoryAction(item, InventoryActionType.PutIn);
-            Debug.Log($"Item PutInBackpack: {result}");
+            bool result = await NetworkManager.Instance.ExecuteInventoryAction(item.Model, InventoryActionType.PutIn);
+
+            if (!result)
+                return;
+            
+            MoveItem(item);
+            inventoryViewController.PutIn(item);
             OnItemPutIn?.Invoke();
         }
 
-        private async void PutOutBackpack(InventoryItemModel item)
+        public async void PutOutBackpack(InventoryItemController item)
         {
-            // TO DO: Call table controller's paste function
+            bool result = await NetworkManager.Instance.ExecuteInventoryAction(item.Model, InventoryActionType.PutOut);
+
+            if (!result)
+                return;
+            
+            tableController.PickupItem(item);
             inventoryViewController.PutOut(item);
-            bool result = await NetworkManager.Instance.ExecuteInventoryAction(item, InventoryActionType.PutOut);
-            Debug.Log($"Item PutOutBackpack: {result}");
             OnItemPutOut?.Invoke();
+        }
+
+        private void MoveItem(InventoryItemController item)
+        {
+            Transform itemTransform = GetItemTransform(item);
+            item.Move(itemTransform.position, itemTransform.rotation);
+        }
+
+        private Transform GetItemTransform(InventoryItemController item)
+        {
+            Transform targetTransform = transformData.FirstOrDefault(i => i.ItemId == item.Model.Id)?.Transform;
+            
+            if (item == null || targetTransform == null)
+                return transform;
+            
+            return targetTransform;
         }
     }
 }

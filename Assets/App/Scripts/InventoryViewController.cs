@@ -12,24 +12,28 @@ namespace App
         [SerializeField] private GameObject view;
 
         public InventorySlotController SelectedSlot => slots.FirstOrDefault(i => i.IsSelected);
-
-        #region Unity Methods
-
-        private void Awake()
-        {
-            slots.ForEach(i => i.Initialize());
-        }
-
-        #endregion
         
         public void ToggleView(bool value)
         {
             view.SetActive(value);
         }
 
-        public void PutOut(InventoryItemModel item)
+        public void PutOut(InventoryItemController item)
         {
-            slots.First(i => i.Model.Id == item.Id).Empty();
+            slots.First(i => i.Item.Model.Id == item.Model.Id).Initialize(null); // empty the slot
+        }
+
+        public void PutIn(InventoryItemController item)
+        {
+            InventorySlotController emptySlot = slots.FirstOrDefault(i => i.Item == null);
+            
+            if (emptySlot == null)
+            {
+                Debug.LogError("No empty slots available!");
+                return;
+            }
+
+            emptySlot.Initialize(item);
         }
     }
 }

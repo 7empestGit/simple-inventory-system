@@ -1,5 +1,3 @@
-using System;
-using App.Models;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,15 +13,16 @@ namespace App
         [SerializeField] private Color selectedColor;
 
         [Space]
-        [SerializeField] private InventoryItemModel model;
-
-        public InventoryItemModel Model => model;
+        [SerializeField] private InventoryItemController item;
+        public InventoryItemController Item => item;
 
         public bool IsSelected { get; private set; }
 
-        public void Initialize()
+        public void Initialize(InventoryItemController targetItem)
         {
-            
+            item = targetItem;
+            iconImage.sprite = item?.Model?.Sprite;
+            IsSelected = false;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -36,12 +35,6 @@ namespace App
         {
             IsSelected = false;
             image.color = defaultColor;
-        }
-
-        public void Empty()
-        {
-            model = new InventoryItemModel();
-            iconImage = null;
         }
     }
 }

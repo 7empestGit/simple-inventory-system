@@ -15,6 +15,8 @@ namespace App
         
         public async UniTask<bool> ExecuteInventoryAction(InventoryItemModel item, InventoryActionType action)
         {
+            Debug.Log($"[{nameof(NetworkManager)}] {nameof(ExecuteInventoryAction)}: {action}] - sending...");
+            
             using UnityWebRequest request = new UnityWebRequest(InventoryBaseURL, UnityWebRequest.kHttpVerbPOST);
             
             request.SetRequestHeader("Content-Type", "application/json");
@@ -29,7 +31,10 @@ namespace App
             
             await request.SendWebRequest();
             
-            return request.result == UnityWebRequest.Result.Success;
+            bool success = request.result == UnityWebRequest.Result.Success;
+            
+            Debug.Log($"[{nameof(NetworkManager)}] {nameof(ExecuteInventoryAction)}: {action}] - success - {success}");
+            return success;
         }
     }
 }

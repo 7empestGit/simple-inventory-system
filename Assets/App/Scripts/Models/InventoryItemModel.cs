@@ -1,4 +1,5 @@
 ﻿using App.Enums;
+using UnityEngine;
 
 namespace App.Models
 {
@@ -9,5 +10,6 @@ namespace App.Models
         public string Name;
         public float Weight;
         public InventoryItemType Type;
+        public Sprite Sprite;
     }
 }
