@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7502312605814648003}
   - component: {fileID: 116818737196447308}
+  - component: {fileID: 9009490751140008797}
+  - component: {fileID: 4917442826628768084}
   m_Layer: 0
   m_Name: Inventory Item
   m_TagString: Untagged
@@ -45,13 +47,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5277dc45b454a1f8eb66423c4c696ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelTransform: {fileID: 551039423385336995}
+  rb: {fileID: 9009490751140008797}
+  coll: {fileID: 4917442826628768084}
   model:
     Id: 0
     Name: pistol
     Weight: 12
     Type: 1
     Sprite: {fileID: 21300000, guid: 69521f9f5de1ac9429cf8670dac0c079, type: 3}
+--- !u!54 &9009490751140008797
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340977057411823525}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4917442826628768084
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340977057411823525}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.6204313, y: 0.6204313, z: 0.14708692}
+  m_Center: {x: -0.011163771, y: 0.008931011, z: 0.00223279}
 --- !u!1001 &2237612664839858993
 PrefabInstance:
   m_ObjectHideFlags: 0

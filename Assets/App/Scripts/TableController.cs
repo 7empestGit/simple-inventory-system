@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App
@@ -10,15 +11,17 @@ namespace App
         
         public void PickupItem(InventoryItemController item)
         {
-            item.ClickHandler = () => PutOutItem(item);
             Transform transformSlot = transformSlots[item.Model.Id];
+            
             item.Move(transformSlot.position, transformSlot.rotation);
+
+            ToggleInteractionsAsync(item, true).Forget();
         }
 
-        private void PutOutItem(InventoryItemController item)
+        private static async UniTask ToggleInteractionsAsync(InventoryItemController item, bool value)
         {
-            item.ClickHandler = null;
-            backpackController.PutInBackpack(item);
+            await UniTask.WaitForSeconds(InventoryItemController.MoveDuration);
+            item.ToggleInteractions(value);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Enums;
 using App.Models;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -14,7 +15,6 @@ namespace App
         [SerializeField] private InventoryViewController inventoryViewController;
         [SerializeField] private TableController tableController;
         [SerializeField] private List<ItemTransformData> transformData;
-        // TO DO: Table controller
         
         [Space]
         public UnityEvent OnItemPutIn;
@@ -36,6 +36,18 @@ namespace App
             }
             
             inventoryViewController.ToggleView(false);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.TryGetComponent(out InventoryItemController item))
+                return;
+
+            if (!item.IsInteractable)
+                return;
+            
+            item.ToggleInteractions(false);
+            PutInBackpack(item);
         }
 
         #endregion
