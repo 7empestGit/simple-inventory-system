@@ -20,7 +20,7 @@ namespace App
 
         public void PutOut(InventoryItemController item)
         {
-            slots.First(i => i.Item.Model.Id == item.Model.Id).Initialize(null); // empty the slot
+            slots.First(i => i.Item?.Model.Id == item.Model.Id).Initialize(null); // empty the slot
         }
 
         public void PutIn(InventoryItemController item)
