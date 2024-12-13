@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace App
+namespace App.Managers
 {
     public class NetworkManager : SingletonBase<NetworkManager>
     {

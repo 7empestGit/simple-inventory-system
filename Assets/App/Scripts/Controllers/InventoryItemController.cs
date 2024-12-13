@@ -1,9 +1,10 @@
 ﻿using System;
+using App.Interfaces;
 using App.Models;
 using UnityEngine;
 using DG.Tweening;
 
-namespace App
+namespace App.Controllers
 {
     public class InventoryItemController : MonoBehaviour, IMovable
     {

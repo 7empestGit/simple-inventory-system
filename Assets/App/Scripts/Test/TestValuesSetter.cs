@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using App.Controllers;
 using UnityEngine;
 
-namespace App
+namespace App.Test
 {
     public class TestValuesSetter : MonoBehaviour
     {

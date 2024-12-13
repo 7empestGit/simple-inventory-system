@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace App
+namespace App.Controllers
 {
     public class InventorySlotController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

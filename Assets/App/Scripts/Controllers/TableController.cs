@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace App
+namespace App.Controllers
 {
     public class TableController : MonoBehaviour
     {

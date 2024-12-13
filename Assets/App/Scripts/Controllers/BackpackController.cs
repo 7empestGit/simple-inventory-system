@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using App.Enums;
+using App.Managers;
 using App.Models;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
-namespace App
+namespace App.Controllers
 {
     public class BackpackController : MonoBehaviour
     {
